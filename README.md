@@ -20,13 +20,17 @@ A professional, lightweight, and SEO-friendly blog engine designed specifically 
 
 ## 📖 Project Overview
 
-This module was developed to demonstrate clean code practices in the PrestaShop ecosystem. It follows the **MVC pattern** and utilizes PrestaShop's modern ObjectModel and Controller structures.
+This module demonstrates clean architecture practices within the PrestaShop ecosystem. It follows the **MVC pattern** and is built using **Doctrine ORM (Entity & Repository pattern)** instead of legacy ObjectModel, combined with Symfony components for better scalability and maintainability.
 
 ### Key Implementation Details:
 - Custom database tables for posts and categories.
 - Integration with PrestaShop's native Image Manager.
 - Custom hooks for front-end display.
+- Doctrine ORM (Entity & Repository pattern)
+- Separation of concerns (Domain / Infrastructure approach)
+- Modern Symfony-based architecture (no legacy ObjectModel)
 
+- 
 ## 👤 Author
 
 
