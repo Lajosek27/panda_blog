@@ -1,4 +1,4 @@
-# Panda Blog Module for PrestaShop 8+
+# Panda Blog Module for PrestaShop 8
 
 A professional, lightweight, and SEO-friendly blog engine designed specifically for **PrestaShop 8**. This module allows you to manage articles, categories, and dynamic content with ease.
 
