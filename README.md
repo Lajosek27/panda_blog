@@ -25,7 +25,6 @@ This module was developed to demonstrate clean code practices in the PrestaShop 
 ### Key Implementation Details:
 - Custom database tables for posts and categories.
 - Integration with PrestaShop's native Image Manager.
-- Support for multi-language content (translations).
 - Custom hooks for front-end display.
 
 ## 👤 Author
