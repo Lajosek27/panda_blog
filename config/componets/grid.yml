@@ -1,0 +1,70 @@
+services:
+  #category
+  Panda\Blog\Admin\Grid\Definition\PandaBlogCategoryGridDefinitionFactory:
+    parent: 'prestashop.core.grid.definition.factory.abstract_grid_definition'
+    public: true
+
+ 
+  Panda\Blog\Admin\Grid\Query\PandaBlogCategoryGridQuery:
+    parent: 'prestashop.core.grid.abstract_query_builder'
+    arguments:
+      - "@prestashop.core.query.doctrine_search_criteria_applicator"
+      - "@=service('prestashop.adapter.legacy.configuration').get('_DB_PREFIX_')"
+      - "@prestashop.core.query.doctrine_search_criteria_applicator"
+    autowire: true
+
+
+  Panda\Blog\Admin\Grid\Filters\PandaBlogCategoryFilters:
+    class: Panda\Blog\Admin\Grid\Filters\PandaBlogCategoryFilters
+
+  panda_blog.category.data_factory:
+    class: PrestaShop\PrestaShop\Core\Grid\Data\Factory\DoctrineGridDataFactory
+    arguments:
+      - '@Panda\Blog\Admin\Grid\Query\PandaBlogCategoryGridQuery'
+      - '@prestashop.core.hook.dispatcher'
+      - '@prestashop.core.grid.query.doctrine_query_parser'
+      - 'panda_blog_category'
+ 
+  
+  panda_blog.category.grid_factory:
+    class: PrestaShop\PrestaShop\Core\Grid\GridFactory
+    public: true
+    arguments:
+      - '@Panda\Blog\Admin\Grid\Definition\PandaBlogCategoryGridDefinitionFactory'
+      - '@panda_blog.category.data_factory'
+      - '@prestashop.core.grid.filter.form_factory'
+
+#POST
+  Panda\Blog\Admin\Grid\Definition\PandaBlogPostGridDefinitionFactory:
+    parent: 'prestashop.core.grid.definition.factory.abstract_grid_definition'
+    public: true
+
+  Panda\Blog\Admin\Grid\Query\PandaBlogPostGridQuery:
+    parent: 'prestashop.core.grid.abstract_query_builder'
+    arguments:
+      - "@prestashop.core.query.doctrine_search_criteria_applicator"
+      - "@=service('prestashop.adapter.legacy.configuration').get('_DB_PREFIX_')"
+      - "@prestashop.core.query.doctrine_search_criteria_applicator"
+    autowire: true
+
+
+  Panda\Blog\Admin\Grid\Filters\PandaBlogPostFilters:
+    class: Panda\Blog\Admin\Grid\Filters\PandaBlogPostFilters
+
+
+  panda_blog.post.data_factory:
+    class: PrestaShop\PrestaShop\Core\Grid\Data\Factory\DoctrineGridDataFactory
+    arguments:
+      - '@Panda\Blog\Admin\Grid\Query\PandaBlogPostGridQuery'
+      - '@prestashop.core.hook.dispatcher'
+      - '@prestashop.core.grid.query.doctrine_query_parser'
+      - 'panda_blog_post'
+ 
+  
+  panda_blog.post.grid_factory:
+    class: PrestaShop\PrestaShop\Core\Grid\GridFactory
+    public: true
+    arguments:
+      - '@Panda\Blog\Admin\Grid\Definition\PandaBlogPostGridDefinitionFactory'
+      - '@panda_blog.post.data_factory'
+      - '@prestashop.core.grid.filter.form_factory'

@@ -1,0 +1,23 @@
+imports:
+  - { resource: ../common.yml }
+
+services:
+  _defaults:
+    public: true
+    autowire: true
+    autoconfigure: true
+
+  panda_blog.hook.action_front_controller_set_media:
+    class: Panda\Blog\Hook\ActionFrontControllerSetMedia
+    arguments:
+      - '@panda_blog.module'
+      - "@=service('prestashop.adapter.legacy.context').getContext()"
+
+
+  panda_blog.hook.display_panda_blog:
+    class: Panda\Blog\Hook\DisplayPandaBlog
+    arguments:
+      - '@panda_blog.module'
+      - "@=service('prestashop.adapter.legacy.context').getContext()"
+      - '@Panda\Blog\Repository\PandaBlogPostRepository'
+ 

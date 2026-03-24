@@ -1,0 +1,70 @@
+{% extends '@PrestaShop/Admin/layout.html.twig' %}
+
+{% form_theme form '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }} 
+
+    <script src="{{ asset('themes/default/js/bundle/category-tree.js') }}"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('.category-tree').each(function() {
+            var $tree = $(this);
+            $tree.categorytree();
+            $tree.categorytree('fold');
+        });
+
+        window.prestashop.component.initComponents([
+        'TinyMCEEditor',
+        
+        
+        ]);
+        const elementId = $("#panda_blog_post_form_related_products");
+
+        let searchInput = new window.prestashop.component.EntitySearchInput(elementId, {
+            onRemovedContent: () => {
+            console.log('Event on product deletion');
+            },
+            onSelectedContent: () => {
+            console.log('Event on product selection');
+            }
+        });
+    });
+    </script>
+{% endblock %}
+
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col">
+
+            <div class="card">
+                {{ form_start(form) }}
+                <h3 class="card-header">
+
+                    {% if edit %}
+                        {{ 'Modyfikuj'|trans({}, 'Modules.Landinginfluencers.Admin') }}
+                    {% else %}
+                        {{ 'Utwórz'|trans({}, 'Modules.Landinginfluencers.Admin') }}
+                    {% endif %}
+
+                </h3>
+
+                <div class="card-block ">
+                    <div class="card-text">
+                        {{ form_errors(form) }}
+                        {{ form_rest(form) }}
+                    </div>
+                </div>
+
+                <div class="card-footer clearfix">
+                    <a href="{{ back_url }}" class="btn btn-outline-secondary">{{ 'Back'|trans({}, 'Admin.Global') }}</a>
+                    <button class="btn btn-primary float-right">{{ 'Save'|trans({}, 'Admin.Actions') }}</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

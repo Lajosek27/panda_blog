@@ -1,0 +1,105 @@
+@mixin h1 {
+    font-family: "Instrument Sans", sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 130%;
+    letter-spacing: 0%;
+    text-transform: uppercase;
+
+}
+
+@mixin h2-uppercase {
+    font-family: "Instrument Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 130%;
+    letter-spacing: 0%;
+    text-transform: uppercase;
+
+}
+
+@mixin h2-normal {
+    font-family: "Instrument Sans", sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+
+}
+
+@mixin h3 {
+    font-family: "Instrument Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 120%;
+    letter-spacing: 0%;
+    text-transform: uppercase;
+
+    @include breakpoint-down(xxxl){
+        font-size: 1.25rem;
+    }
+
+    @include breakpoint-down(lg){
+        font-size: 15px;
+    }
+
+}
+
+@mixin xxl-text {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+}
+
+@mixin xl-text {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+}
+
+@mixin lg-text {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+    @include breakpoint-down(xxxl) {
+        font-size: 16px;
+    }
+    @include breakpoint-down(lg) {
+        font-size: 14px;
+    }
+
+}
+
+@mixin body-text {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+    @include breakpoint-down(xxxl){
+        font-size: 14px;
+    }
+    @include breakpoint-down(lg){
+        font-size: 12px;
+    }
+
+}
+
+@mixin sm-text {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 0%;
+}

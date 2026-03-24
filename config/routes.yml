@@ -1,0 +1,80 @@
+panda_blog_configuration:
+  path: /panda-blog/configuration
+  methods: [GET, POST]
+  defaults:
+      _controller: 'Panda\Blog\Controller\Admin\AdminPandaBlogConfigurationController::indexAction'
+
+#category
+panda_blog_category.filter:
+  path: /panda-blog/category/list/{id_parent}
+  methods: [POST]
+  defaults:
+    _controller: 'Panda\Blog\Controller\Admin\PandaBlogCategoryController::filter'
+    id_parent: 0
+  requirements:
+    id_parent: '\d+'
+
+panda_blog_category.list:
+  path: /panda-blog/category/list/{id_parent}
+  methods: [GET]
+  defaults:
+      _controller: 'Panda\Blog\Controller\Admin\PandaBlogCategoryController::list'
+      id_parent: 0
+  requirements:
+    id_parent: '\d+'
+
+panda_blog_category.edit:
+  path: /panda-blog/category/edit/{id}
+  methods: [GET, POST]
+  defaults:
+      _controller: 'Panda\Blog\Controller\Admin\PandaBlogCategoryController::edit'
+  requirements:
+        id: '\d+'
+
+
+panda_blog_category.delete:
+  path: /panda-blog/category/delete/{id}
+  methods: [GET, POST]
+  defaults:
+      _controller: 'Panda\Blog\Controller\Admin\PandaBlogCategoryController::delete'
+  requirements:
+        id: '\d+'
+
+
+#post
+panda_blog_post.filter:
+  path: /panda-blog/post/list
+  methods: [POST]
+  defaults:
+    _controller: 'Panda\Blog\Controller\Admin\PandaBlogPostController::filter'
+
+
+panda_blog_post.list:
+  path: /panda-blog/post/list
+  methods: [GET]
+  defaults:
+      _controller: 'Panda\Blog\Controller\Admin\PandaBlogPostController::list'
+
+panda_blog_post.toggle_active:
+  path: /panda-blog/post/toggle-active/{id}
+  methods: [GET,POST]
+  defaults:
+      _controller: 'Panda\Blog\Controller\Admin\PandaBlogPostController::toggleActive'
+  requirements:
+    id: '\d+'
+
+panda_blog_post.edit:
+  path: /panda-blog/post/edit/{id}
+  methods: [GET,POST]
+  defaults:
+      _controller: 'Panda\Blog\Controller\Admin\PandaBlogPostController::edit'
+  requirements:
+    id: '\d+'
+
+panda_blog_post.delete:
+  path: /panda-blog/post/delete/{id}
+  methods: [GET,POST]
+  defaults:
+      _controller: 'Panda\Blog\Controller\Admin\PandaBlogPostController::delete'
+  requirements:
+    id: '\d+'

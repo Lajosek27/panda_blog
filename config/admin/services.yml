@@ -1,0 +1,38 @@
+imports:
+  - { resource: ../common.yml }
+  - { resource: ../componets/*.yml }
+
+services:
+  _defaults:
+    public: true
+    autowire: true
+    autoconfigure: true
+    bind:
+      #presta
+      $gridPresenter: '@prestashop.core.grid.presenter.grid_presenter'
+      $filterFormFactory: '@prestashop.core.grid.filter.form_factory'
+      #category
+      $categorygGridFactory: "@panda_blog.category.grid_factory"
+      $categorygFormDataProvider: "@panda_blog.category.form_provider"
+      #post
+      $postGridFactory: "@panda_blog.post.grid_factory"
+      $postFormDataProvider: "@panda_blog.post.form_provider"
+
+  
+  
+  Panda\Blog\Controller\Admin\AdminPandaBlogConfigurationController:
+    public: true
+    arguments:
+      - "@=service('form.factory')"
+      - '@panda_blog.configuration.form_provider'
+      - '@translator'
+    tags:
+      - { name: controller.service_arguments }
+
+  Panda\Blog\Controller\Admin\PandaBlogCategoryController:
+    arguments:
+      $translator: "@translator"
+     
+  Panda\Blog\Controller\Admin\PandaBlogPostController:
+    arguments:
+      $translator: "@translator"

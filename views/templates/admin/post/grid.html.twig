@@ -1,0 +1,79 @@
+{% extends '@PrestaShop/Admin/layout.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            {% include '@PrestaShop/Admin/Common/Grid/grid_panel.html.twig' %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('themes/default/js/bundle/pagination.js') }}"></script>
+
+    <script type="text/javascript">
+        $(() => {
+            const grid = new window.prestashop.component.Grid($('.js-grid').data('grid-id'));
+
+            grid.addExtension(new window.prestashop.component.GridExtensions.SortingExtension());
+            grid.addExtension(new window.prestashop.component.GridExtensions.SubmitRowActionExtension());
+            grid.addExtension(new window.prestashop.component.GridExtensions.SubmitGridActionExtension());
+            grid.addExtension(new window.prestashop.component.GridExtensions.SubmitBulkActionExtension());
+            grid.addExtension(new window.prestashop.component.GridExtensions.FiltersResetExtension());
+            grid.addExtension(new window.prestashop.component.GridExtensions.ReloadListExtension());
+            grid.addExtension(new window.prestashop.component.GridExtensions.ExportToSqlManagerExtension());
+            grid.addExtension(new window.prestashop.component.GridExtensions.ColumnTogglingExtension());
+        });
+
+
+         document.addEventListener('DOMContentLoaded', function() {
+            const gridTable = document.querySelector('#{{ grid.id }}_grid_table  > tbody');
+            
+            if (gridTable) {
+                gridTable.querySelectorAll('tr').forEach(function(row) {
+                    // Znajdź link w kolumnie "name"
+                    const nameLink = row.querySelector('td a[href*="panda-blog/post"]');
+                    
+                    if (!nameLink) return;
+                    
+                    const targetUrl = nameLink.getAttribute('href');
+                    
+                    // Ustaw kursor na pointer
+                    row.style.cursor = 'pointer';
+                    
+                    // Kliknięcie na cały wiersz
+                    row.addEventListener('click', function(e) {
+                        // Nie przekierowuj jeśli kliknięto w:
+                        // - kolumnę akcji
+                        // - jakikolwiek link (żeby nie dublować kliknięcia)
+                        // - przycisk
+                        if (e.target.closest('.column-is_active,column-is_actions') || 
+                            e.target.tagName === 'A' || 
+                            e.target.tagName === 'BUTTON' ||
+                            e.target.closest('button')||
+                            e.target.closest('.slide-button')) {
+                            return;
+                        }
+                        
+                        // Przekieruj do URL z linku
+                        window.location.href = targetUrl;
+                    });
+                    
+                    // Hover effect (opcjonalnie)
+                    row.addEventListener('mouseenter', function() {
+                        row.style.backgroundColor = '#f8f9fa';
+                    });
+                    
+                    row.addEventListener('mouseleave', function() {
+                        row.style.backgroundColor = '';
+                    });
+                });
+            }
+        });
+    </script>
+   
+
+{% endblock %}

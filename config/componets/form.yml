@@ -1,0 +1,58 @@
+services:
+  #Configuration
+  Panda\Blog\Admin\Form\Type\PandaBlogConfigurationFormType:
+    class: 'Panda\Blog\Admin\Form\Type\PandaBlogConfigurationFormType'
+    autowire: false
+    tags:
+      - { name: form.type }
+
+  Panda\Blog\Admin\Form\Data\Configuration\PandaBlogConfigurationDataConfiguration:
+    class: Panda\Blog\Admin\Form\Data\Configuration\PandaBlogConfigurationDataConfiguration
+    arguments:
+      - '@prestashop.adapter.legacy.configuration'
+
+  panda_blog.configuration.form_provider:
+    class: Panda\Blog\Admin\Form\Provider\PandaBlogFormDataProvider
+    arguments:
+      - '@Panda\Blog\Admin\Form\Data\Configuration\PandaBlogConfigurationDataConfiguration'
+  
+  
+  #category
+  Panda\Blog\Admin\Form\Type\PandaBlogCategoryFormType:
+    class: 'Panda\Blog\Admin\Form\Type\PandaBlogCategoryFormType'
+    autowire: false
+    tags:
+      - { name: form.type }
+
+  Panda\Blog\Admin\Form\Data\Configuration\PandaBlogCategoryDataConfiguration:
+    class: Panda\Blog\Admin\Form\Data\Configuration\PandaBlogCategoryDataConfiguration
+    arguments:
+      - '@Panda\Blog\Repository\PandaBlogCategoryRepository'
+      - '@Symfony\Component\HttpFoundation\RequestStack'
+
+  panda_blog.category.form_provider:
+    class: Panda\Blog\Admin\Form\Provider\PandaBlogFormDataProvider
+    arguments:
+      - '@Panda\Blog\Admin\Form\Data\Configuration\PandaBlogCategoryDataConfiguration'
+
+
+  #POST
+  Panda\Blog\Admin\Form\Type\PandaBlogPostFormType:
+    class: 'Panda\Blog\Admin\Form\Type\PandaBlogPostFormType'
+    autowire: false
+    arguments:
+      - '@Panda\Blog\Repository\PandaBlogCategoryRepository'
+    tags:
+      - { name: form.type }
+
+  Panda\Blog\Admin\Form\Data\Configuration\PandaBlogPostDataConfiguration:
+    class: Panda\Blog\Admin\Form\Data\Configuration\PandaBlogPostDataConfiguration
+    arguments:
+      - '@Panda\Blog\Repository\PandaBlogPostRepository'
+      - '@Panda\Blog\Repository\PandaBlogCategoryRepository'
+      - '@Symfony\Component\HttpFoundation\RequestStack'
+
+  panda_blog.post.form_provider:
+    class: Panda\Blog\Admin\Form\Provider\PandaBlogFormDataProvider
+    arguments:
+      - '@Panda\Blog\Admin\Form\Data\Configuration\PandaBlogPostDataConfiguration'

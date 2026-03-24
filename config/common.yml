@@ -1,0 +1,40 @@
+services:
+  _defaults:
+    public: true
+    autowire: true
+    autoconfigure: true
+   
+     
+
+  panda_blog.module:
+    class: Panda\Panda_Blog
+    factory: [ 'Module', 'getInstanceByName' ]
+    public: true
+    arguments:
+      - 'panda_blog'
+
+  Panda\Blog\Entity\PandaBlogCategory:
+    public: false
+    autowire: false
+    autoconfigure: false
+
+  Panda\Blog\Entity\PandaBlogPost:
+    public: false
+    autowire: false
+    autoconfigure: false
+
+  Panda\Blog\Repository\PandaBlogCategoryRepository:
+    arguments:
+      - '@doctrine'
+    public: true
+  
+  Panda\Blog\Repository\PandaBlogPostRepository:
+    arguments:
+      - '@doctrine'
+    public: true
+  
+  panda_blog.hook.module_routes:
+    class: Panda\Blog\Hook\ModuleRoutes
+    public: true
+   
+    
