@@ -30,7 +30,7 @@ This module demonstrates clean architecture practices within the PrestaShop ecos
 - Separation of concerns (Domain / Infrastructure approach)
 - Modern Symfony-based architecture (no legacy ObjectModel)
 
-- 
+  
 ## 👤 Author
 
 
